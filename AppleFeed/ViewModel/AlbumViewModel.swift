@@ -6,26 +6,6 @@ class AlbumViewModel: Hashable {
     
     private(set) var album: Album
     
-    static let dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        return dateFormatter
-    }()
-    
-    static let monthFirstDateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM-d-yyyy"
-        return dateFormatter
-    }()
-    
-    static func formattedDate(releaseDate: String) -> String {
-        if let date = AlbumViewModel.dateFormatter.date(from: releaseDate) {
-            return AlbumViewModel.monthFirstDateFormatter.string(from: date)
-        } else {
-            return "Unknown"
-        }
-    }
-    
     let imageURLString: String
     let albumName: String
     let artistName: String
@@ -56,6 +36,26 @@ class AlbumViewModel: Hashable {
         }
         _ = semaphore.wait(timeout: .distantFuture)
         viewModel = fetchedAlbumsViewModels
+    }
+    
+    static let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        return dateFormatter
+    }()
+    
+    static let monthFirstDateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM-d-yyyy"
+        return dateFormatter
+    }()
+    
+    static func formattedDate(releaseDate: String) -> String {
+        if let date = AlbumViewModel.dateFormatter.date(from: releaseDate) {
+            return AlbumViewModel.monthFirstDateFormatter.string(from: date)
+        } else {
+            return "Unknown"
+        }
     }
     
 }

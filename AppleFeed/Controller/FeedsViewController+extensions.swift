@@ -20,7 +20,7 @@ extension FeedsViewController {
         let layout = UICollectionViewCompositionalLayout {  (_, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             let columns = self.columnCount(for: layoutEnvironment.container.effectiveContentSize.width)
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(CGFloat(1.0/columns)),
-                                                           heightDimension: .fractionalHeight(1.0))
+                                                  heightDimension: .fractionalHeight(1.0))
 
 
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -31,6 +31,7 @@ extension FeedsViewController {
                                                    heightDimension: .estimated(100))
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                            subitems: [item])
+            
             let section = NSCollectionLayoutSection(group: group)
             section.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
             return section
