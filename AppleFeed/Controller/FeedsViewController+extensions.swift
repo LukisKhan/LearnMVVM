@@ -41,21 +41,11 @@ extension FeedsViewController {
     
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, AlbumViewModel>(collectionView: collectionView) { (collectionView, indexPath, albumViewModel) -> UICollectionViewCell? in
+            
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumCell.reuseIdentifier, for: indexPath) as? AlbumCell else { fatalError("Cannot create new cell")
             }
-//            let albumViewModel = self.albumsViewModel[indexPath.row]
+            
             cell.albumViewModel = albumViewModel
-//            cell.albumName.text = albumViewModel.artistName
-//            cell.artistName.text = albumViewModel.artistName
-//            cell.releaseDate.text = albumViewModel.releaseDate
-//            cell.albumArt.loadImage(from: albumViewModel.imageURLString, nsImageCache: self.nsImageCache, completionHandler: { image in
-//                cell.albumArt.image = image
-//            })
-//            AlbumArtCache.shared.loadImage(from: albumViewModel.imageURLString) { image in
-//                cell.albumArt.image = image
-//            }
-//            cell.albumArt.layer.cornerRadius = 10
-//            cell.loadImage(urlString: albumViewModel.imageURLString)
             return cell
         }
     }
