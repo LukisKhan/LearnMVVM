@@ -13,8 +13,7 @@ class FeedsViewController: UICollectionViewController {
     }
     @IBAction func refresh(_ sender: Any) {
         reloaded = true
-//        AlbumViewModel.fetchFeeds(viewModel: &albumsViewModel)
-        fetchFeeds()
+        AlbumViewModel.fetchFeeds(viewModel: &albumsViewModel)
     }
     
     var dataSource: UICollectionViewDiffableDataSource<Section, AlbumViewModel>!
@@ -28,25 +27,13 @@ class FeedsViewController: UICollectionViewController {
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Music Coming Soon"
         collectionView.collectionViewLayout = configureLayout()
         configureDataSource()
-//        AlbumViewModel.fetchFeeds(viewModel: &albumsViewModel)
-        fetchFeeds()
-    }
+        AlbumViewModel.fetchFeeds(viewModel: &albumsViewModel)
 
-    private func fetchFeeds() {
-        let feedRequest = FeedRequest()
-        feedRequest.getAlbums { [weak self] result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let albums):
-                self?.albumsViewModel = albums.map( { return AlbumViewModel(album: $0)} )
-            }
-        }
     }
+    
 }

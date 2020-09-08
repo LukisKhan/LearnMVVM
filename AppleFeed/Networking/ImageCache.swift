@@ -1,10 +1,3 @@
-//
-//  ImageCache.swift
-//  AppleFeed
-//
-//  Created by Rave BizzDev on 9/7/20.
-//  Copyright © 2020 Rave BizzDev. All rights reserved.
-//
 
 import UIKit
 
@@ -36,7 +29,6 @@ struct AlbumArtCache {
             let task = URLSession.shared.dataTask(with: url) { (data, _, _) in
                 if let myData = data, let image = UIImage(data: myData) {
                     DispatchQueue.main.async {
-                        //                           self.image = image
                         completionHandler(image)
                     }
                     self.cache.setObject(image, forKey: urlString as NSString)

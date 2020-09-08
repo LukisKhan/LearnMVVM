@@ -41,28 +41,22 @@ class AlbumViewModel: Hashable {
     }
     
 
-//    static func fetchFeeds( viewModel: inout [AlbumViewModel] ) {
-//            var fetchedAlbumsViewModels = [AlbumViewModel]()
-////            let semaphore = DispatchSemaphore(value: 1)
-//            let feedRequest = FeedRequest()
-//            feedRequest.getAlbums { result in
-//                switch result {
-//                case .failure(let error):
-//                    print(error)
-//                case .success(let albums):
-//                    print("in success callback")
-//                    fetchedAlbumsViewModels = albums.map( { return AlbumViewModel(album: $0)} )
-//                    print(fetchedAlbumsViewModels.count)
-////                    semaphore.signal()
-////                    self?.albumsViewModel = albums.map( { return AlbumViewModel(album: $0)} )
-//    //                self?.albums = albums
-//
-//                }
-//            }
-////            semaphore.wait()
-//            viewModel = fetchedAlbumsViewModels
-//            print(viewModel.count)
-//        }
+    static func fetchFeeds( viewModel: inout [AlbumViewModel] ) {
+            var fetchedAlbumsViewModels = [AlbumViewModel]()
+            let semaphore = DispatchSemaphore(value: 0)
+            let feedRequest = FeedRequest()
+            feedRequest.getAlbums { result in
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let albums):
+                    fetchedAlbumsViewModels = albums.map({ return AlbumViewModel(album: $0) })
+                    semaphore.signal()
+                }
+        }
+        _ = semaphore.wait(timeout: .distantFuture)
+        viewModel = fetchedAlbumsViewModels
+    }
     
 }
 
