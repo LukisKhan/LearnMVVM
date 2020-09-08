@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E5329C1250734E300BA7AE7 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5329C0250734E300BA7AE7 /* ImageCache.swift */; };
 		1EBA5FC0250561BB00256DE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBA5FBF250561BB00256DE8 /* AppDelegate.swift */; };
 		1EBA5FC2250561BB00256DE8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBA5FC1250561BB00256DE8 /* SceneDelegate.swift */; };
 		1EBA5FC7250561BB00256DE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EBA5FC5250561BB00256DE8 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E5329C0250734E300BA7AE7 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		1EBA5FBC250561BB00256DE8 /* AppleFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppleFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EBA5FBF250561BB00256DE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EBA5FC1250561BB00256DE8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +75,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E5329BC25072E5300BA7AE7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1EBA5FE72505722500256DE8 /* Feed.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1E5329BD25072E5B00BA7AE7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1EBA5FE5250569F700256DE8 /* AlbumCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1E5329BE25072E6000BA7AE7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1EBA5FF92505D9D500256DE8 /* FeedsViewController.swift */,
+				1EBA5FF42505BC0800256DE8 /* FeedsViewController+extensions.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1E5329BF25072E6600BA7AE7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1EBA5FED2505912500256DE8 /* AlbumViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		1EBA5FB3250561BB00256DE8 = {
 			isa = PBXGroup;
 			children = (
@@ -94,11 +129,10 @@
 		1EBA5FBE250561BB00256DE8 /* AppleFeed */ = {
 			isa = PBXGroup;
 			children = (
-				1EBA5FF92505D9D500256DE8 /* FeedsViewController.swift */,
-				1EBA5FF42505BC0800256DE8 /* FeedsViewController+extensions.swift */,
-				1EBA5FED2505912500256DE8 /* AlbumViewModel.swift */,
-				1EBA5FE5250569F700256DE8 /* AlbumCell.swift */,
-				1EBA5FE72505722500256DE8 /* Feed.swift */,
+				1E5329BF25072E6600BA7AE7 /* ViewModel */,
+				1E5329BE25072E6000BA7AE7 /* Controller */,
+				1E5329BD25072E5B00BA7AE7 /* View */,
+				1E5329BC25072E5300BA7AE7 /* Model */,
 				1EBA5FF32505BB0400256DE8 /* Networking */,
 				1EBA5FF22505BAE300256DE8 /* Supporting */,
 				1EBA5FCD250561BF00256DE8 /* Info.plist */,
@@ -134,6 +168,7 @@
 			children = (
 				1EBA5FE92505729D00256DE8 /* FeedRequest.swift */,
 				1EBA5FEB25057F0500256DE8 /* UIImage+load.swift */,
+				1E5329C0250734E300BA7AE7 /* ImageCache.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -239,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E5329C1250734E300BA7AE7 /* ImageCache.swift in Sources */,
 				1EBA5FE82505722500256DE8 /* Feed.swift in Sources */,
 				1EBA5FC0250561BB00256DE8 /* AppDelegate.swift in Sources */,
 				1EBA5FC2250561BB00256DE8 /* SceneDelegate.swift in Sources */,

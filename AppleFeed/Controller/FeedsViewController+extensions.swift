@@ -40,25 +40,30 @@ extension FeedsViewController {
     }
     
     func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Album>(collectionView: collectionView) { (collectionView, indexPath, album) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, AlbumViewModel>(collectionView: collectionView) { (collectionView, indexPath, albumViewModel) -> UICollectionViewCell? in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlbumCell.reuseIdentifier, for: indexPath) as? AlbumCell else { fatalError("Cannot create new cell")
             }
-            let albumViewModel = AlbumViewModel(album: album)
-            cell.albumName.text = albumViewModel.artistName
-            cell.artistName.text = albumViewModel.artistName
-            cell.releaseDate.text = albumViewModel.releaseDate
-            cell.albumArt.loadImage(from: albumViewModel.imageURL, nsImageCache: self.nsImageCache, completionHandler: { image in
-                cell.albumArt.image = image
-            })
-            cell.albumArt.layer.cornerRadius = 10
+//            let albumViewModel = self.albumsViewModel[indexPath.row]
+            cell.albumViewModel = albumViewModel
+//            cell.albumName.text = albumViewModel.artistName
+//            cell.artistName.text = albumViewModel.artistName
+//            cell.releaseDate.text = albumViewModel.releaseDate
+//            cell.albumArt.loadImage(from: albumViewModel.imageURLString, nsImageCache: self.nsImageCache, completionHandler: { image in
+//                cell.albumArt.image = image
+//            })
+//            AlbumArtCache.shared.loadImage(from: albumViewModel.imageURLString) { image in
+//                cell.albumArt.image = image
+//            }
+//            cell.albumArt.layer.cornerRadius = 10
+//            cell.loadImage(urlString: albumViewModel.imageURLString)
             return cell
         }
     }
     
     func updateAlbums(animate: Bool = false) {
-        var initialSnapshot = NSDiffableDataSourceSnapshot<Section, Album>()
+        var initialSnapshot = NSDiffableDataSourceSnapshot<Section, AlbumViewModel>()
         initialSnapshot.appendSections([.main])
-        initialSnapshot.appendItems(albums, toSection: .main)
+        initialSnapshot.appendItems(albumsViewModel, toSection: .main)
 
         dataSource.apply(initialSnapshot, animatingDifferences: animate)
     }

@@ -16,24 +16,43 @@ class FeedsViewController: UICollectionViewController {
         fetchFeeds()
     }
     
-    var dataSource: UICollectionViewDiffableDataSource<Section, Album>!
+    var dataSource: UICollectionViewDiffableDataSource<Section, AlbumViewModel>!
     var isGrid = false
     var reloaded = false
-    var nsImageCache = NSCache<NSString, UIImage>()
-    var albums = [Album]() {
+//    var nsImageCache = NSCache<NSString, UIImage>()
+//    var albums = [Album]()
+//    {
+//        didSet {
+//            DispatchQueue.main.async {
+//                self.updateAlbums(animate: self.reloaded)
+//            }
+//        }
+//    }
+    
+//    var albumsViewModel = [Album]() {
+//        didSet {
+//            DispatchQueue.main.async {
+//                self.updateAlbums(animate: self.reloaded)
+//            }
+//        }
+//    }
+    var albumsViewModel = [AlbumViewModel]() {
         didSet {
             DispatchQueue.main.async {
                 self.updateAlbums(animate: self.reloaded)
+//                self.collectionView.reloadData()
             }
         }
     }
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Music Coming Soon"
         collectionView.collectionViewLayout = configureLayout()
         configureDataSource()
         fetchFeeds()
+//        albumsViewModel = AlbumViewModel.fetchAlbums()
     }
 
     private func fetchFeeds() {
@@ -43,7 +62,8 @@ class FeedsViewController: UICollectionViewController {
             case .failure(let error):
                 print(error)
             case .success(let albums):
-                self?.albums = albums
+                self?.albumsViewModel = albums.map( { return AlbumViewModel(album: $0)} )
+//                self?.albums = albums
             }
         }
     }
