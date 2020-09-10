@@ -1,7 +1,7 @@
 
 import UIKit
 
-struct AlbumArtCache {
+class AlbumArtCache {
     static let shared = AlbumArtCache()
     private init () {}
     
@@ -22,19 +22,14 @@ struct AlbumArtCache {
                 completionHandler(cachedImage)
             }
         } else {
-            guard let placeholder = UIImage(named: "loading") else { return }
-            DispatchQueue.main.async {
-                completionHandler(placeholder)
-            }
-            let task = URLSession.shared.dataTask(with: url) { (data, _, _) in
-                if let myData = data, let image = UIImage(data: myData) {
+            ImageRequest(url: url).loadAndDecode { image in
+                if let image = image {
                     DispatchQueue.main.async {
                         completionHandler(image)
                     }
                     self.cache.setObject(image, forKey: urlString as NSString)
                 }
             }
-            task.resume()
         }
     }
 }
