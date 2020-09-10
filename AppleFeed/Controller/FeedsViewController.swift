@@ -13,38 +13,27 @@ class FeedsViewController: UICollectionViewController {
     }
     @IBAction func refresh(_ sender: Any) {
         reloaded = true
-        fetchFeeds()
+        AlbumViewModel.fetchFeeds(viewModel: &albumsViewModel)
     }
     
-    var dataSource: UICollectionViewDiffableDataSource<Section, Album>!
+    var dataSource: UICollectionViewDiffableDataSource<Section, AlbumViewModel>!
     var isGrid = false
     var reloaded = false
-    var nsImageCache = NSCache<NSString, UIImage>()
-    var albums = [Album]() {
+    var albumsViewModel = [AlbumViewModel]() {
         didSet {
             DispatchQueue.main.async {
                 self.updateAlbums(animate: self.reloaded)
             }
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Music Coming Soon"
         collectionView.collectionViewLayout = configureLayout()
         configureDataSource()
-        fetchFeeds()
-    }
+        AlbumViewModel.fetchFeeds(viewModel: &albumsViewModel)
 
-    private func fetchFeeds() {
-        let feedRequest = FeedRequest()
-        feedRequest.getAlbums { [weak self] result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let albums):
-                self?.albums = albums
-            }
-        }
     }
+    
 }

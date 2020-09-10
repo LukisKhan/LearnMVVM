@@ -9,10 +9,7 @@ struct AlbumFeed: Decodable {
     let results: [Album]
 }
 
-struct Album: Decodable, Hashable {
-    static func == (lhs: Album, rhs: Album) -> Bool {
-        return lhs.name == rhs.name
-    }
+struct Album: Decodable {
     
     let artistName: String
     let name: String

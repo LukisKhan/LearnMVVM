@@ -42,11 +42,9 @@ class AppleFeedTests: XCTestCase {
             let oneAblum = Album(artistName: "",
                                  name: "Fake Album",
                                  artworkUrl100: "",
-                                 releaseDate: "",
-                                 url: "")
+                                 releaseDate: "")
             let albums = Array(repeating: oneAblum, count: 3)
-            let author = ["name": "Fake name"]
-            let feed = Feed(feed: AlbumFeed(title: "", id: "1", author: author, results: albums))
+            let feed = Feed(feed: AlbumFeed(results: albums))
             
             XCTAssertTrue(feed.feed.results.count == 3, "Array of albums can be stored in Feed model")
         }
