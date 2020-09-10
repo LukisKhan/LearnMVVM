@@ -22,7 +22,6 @@ class AlbumCell: UICollectionViewCell {
         if albumArt.image == nil {
             guard let placeholder = UIImage(named: "loading") else { fatalError() }
             DispatchQueue.main.async {
-                print("adding placeholder")
                 self.albumArt.image = placeholder
             }
         }
